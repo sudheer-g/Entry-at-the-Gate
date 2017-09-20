@@ -1,0 +1,35 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+@Styles.Render("~/Content/css")
+@Scripts.Render("~/bundles/modernizr")
+<div class="jumbotron text-center">
+    <h1>Entry At The Gate</h1>
+    <p class="lead">
+        Welcome to Entry at the Gate, an application which handles Guest Management for your organisation. Register your employees
+        in this application and use features like Dynamic Escort Allocation, Instant Notifications, Individual employee accounts etc.
+    </p>
+    <div>
+        @Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink", @class = "btn btn-primary" }) @Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink", @class = "btn btn-default" })
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-md-4">
+        <h3>Administrator</h3>
+        <p>The administrator is the most powerful user accessing the service. He/she is the only one who can perform all the CRUD operations on all the data. The administrator will be able to perform CRUD operations on Users, Roles and Guests. He/she will also be able to assign an escort to an incoming guest.</p>
+    </div>
+    <div class="col-md-4">
+        <h3>Security</h3>
+        <p>The security handles the Client Side operations of the service. He/she will be able to READ the incoming guest list created by the administrator. He/she will be able to create Id Proof records for the incoming guests, and validate them. He/she can generate a gate pass to the respective guest allowing access to the client’s location.</p>
+    </div>
+    <div class="col-md-4">
+        <h3>Escorts</h3>
+        <p>Any employee who is not an administrator or the Security can be an escort. An escort can login to his/her account and view if he/she had been assigned as an escort. The user can accept/reject the appointment as an escort.  The admin will reassign the job to another escort if he/she rejects the job. An escort does not have any other privileges in the service.</p>
+    </div>
+</div>
+
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/bootstrap")
+

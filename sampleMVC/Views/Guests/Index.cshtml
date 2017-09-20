@@ -1,0 +1,103 @@
+﻿@model IEnumerable<sampleMVC.Models.Guest>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+@if (Request.IsAuthenticated && User.IsInRole("Admin"))
+{
+<p>
+    @Html.ActionLink("Create New", "Create", "Guests", null, new { @class = "btn btn-primary" })
+</p>
+}
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+           @Html.DisplayNameFor(model => model.email) 
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Reason)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EntryTime)
+        </th>
+    @if (Request.IsAuthenticated && User.IsInRole("Security"))
+    {
+        <th>
+            @Html.DisplayNameFor(model => model.EscortID)
+        </th>
+    }
+        <th>
+            @Html.DisplayName("Options")
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @if (Request.IsAuthenticated && User.IsInRole("Security"))
+            {
+                @Html.ActionLink(item.Name,"Create","IdentityProofs",new { email = item.email}, null);
+            }
+            else
+            {
+                @Html.DisplayFor(modelItem => item.Name)
+            }
+            
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Reason)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EntryTime)
+        </td>
+        @if (Request.IsAuthenticated && User.IsInRole("Security"))
+        {
+            <td>
+                @Html.DisplayFor(modelItem => item.EscortID)
+            </td>
+        }
+@if (Request.IsAuthenticated && User.IsInRole("Admin"))
+{
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.ID }, new { @class = "btn btn-default" }) 
+            @Html.ActionLink("Details", "Details", new { id = item.ID }, new { @class = "btn btn-default" }) 
+            @Html.ActionLink("Delete", "Delete", new { id = item.ID }, new { @class = "btn btn-default" }) 
+            @Html.ActionLink("Assign Escort", "AssignEscort", "RolesAdmin", new { guestID = item.ID }, new { @class = "EscortLink btn btn-primary" })
+        </td>
+}
+@if(Request.IsAuthenticated && User.IsInRole("Security"))
+{
+    <td>
+        @Html.ActionLink("Gate Pass","DownloadGatePass","Guests",new { id = item.ID}, new { @class = "btn btn-default"})
+        @Html.ActionLink("Release Guest", "Delete", new { id = item.ID }, new { @class = "btn btn-primary" })       
+    </td>
+}
+    </tr>
+}
+
+</table>
+
+<script src="~/Scripts/jquery-1.12.4.min.js"></script>
+<script>
+    $(".EscortLink").click(function (e) {
+
+        e.preventDefault();
+        $.ajax({
+
+            url: $(this).attr("href"), // comma here instead of semicolon   
+            success: function () {
+                alert("Escort Request Sent!");  // or any other indication if you want to show
+            }
+
+        });
+
+    });
+</script>

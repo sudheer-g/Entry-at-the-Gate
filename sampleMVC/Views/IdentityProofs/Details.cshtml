@@ -1,0 +1,70 @@
+﻿@model sampleMVC.Models.IdentityProof
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>IdentityProof</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ContactNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ContactNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IdProofType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IdProofType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IdProofNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IdProofNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ReportTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ReportTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Photo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Photo)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { email = Model.email }, new { @class = "btn btn-default" }) 
+
+    @if (Request.IsAuthenticated && User.IsInRole("Admin"))
+    {
+        @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-default" })
+    }
+</p>
