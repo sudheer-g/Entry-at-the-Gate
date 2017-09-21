@@ -10,12 +10,14 @@ using System.Net;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using sampleMVC.Models;
 
 namespace IdentitySample.Controllers
 {
     [Authorize(Roles = "Admin")]
     public class UsersAdminController : Controller
     {
+        private ApplicationDbContext db = new ApplicationDbContext();
         public UsersAdminController()
         {
         }
@@ -68,7 +70,6 @@ namespace IdentitySample.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             var user = await UserManager.FindByIdAsync(id);
-
             ViewBag.RoleNames = await UserManager.GetRolesAsync(user.Id);
 
             return View(user);

@@ -1,17 +1,17 @@
 ﻿@model IEnumerable<sampleMVC.Models.Guest>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Guest Requests";
 }
 
-<h2>Index</h2>
+<h2>Guest Requests</h2>
 @if (Request.IsAuthenticated && User.IsInRole("Admin"))
 {
 <p>
     @Html.ActionLink("Create New", "Create", "Guests", null, new { @class = "btn btn-primary" })
 </p>
 }
-<table class="table">
+<table class="table table-hover table-bordered">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Name)
@@ -68,15 +68,15 @@
 {
         <td>
             @Html.ActionLink("Edit", "Edit", new { id = item.ID }, new { @class = "btn btn-default" }) 
-            @Html.ActionLink("Details", "Details", new { id = item.ID }, new { @class = "btn btn-default" }) 
-            @Html.ActionLink("Delete", "Delete", new { id = item.ID }, new { @class = "btn btn-default" }) 
+            @Html.ActionLink("Details", "Details", new { id = item.ID }, new { @class = "btn btn-info" }) 
+            @Html.ActionLink("Delete", "Delete", new { id = item.ID }, new { @class = "btn btn-danger" }) 
             @Html.ActionLink("Assign Escort", "AssignEscort", "RolesAdmin", new { guestID = item.ID }, new { @class = "EscortLink btn btn-primary" })
         </td>
 }
 @if(Request.IsAuthenticated && User.IsInRole("Security"))
 {
     <td>
-        @Html.ActionLink("Gate Pass","DownloadGatePass","Guests",new { id = item.ID}, new { @class = "btn btn-default"})
+        @Html.ActionLink("Gate Pass","DownloadGatePass","Guests",new { id = item.ID}, new { @class = "btn btn-success"})
         @Html.ActionLink("Release Guest", "Delete", new { id = item.ID }, new { @class = "btn btn-primary" })       
     </td>
 }

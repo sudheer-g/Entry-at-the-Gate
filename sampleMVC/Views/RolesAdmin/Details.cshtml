@@ -25,7 +25,7 @@
     <p>No users found in this role.</p>
 }
 
-<table class="table">
+<table class="table table-hover">
 
     @foreach (var item in ViewBag.Users)
     {
@@ -34,17 +34,10 @@
                 @item.UserName
             </td>
         </tr>
-        if (ViewData[item.Id] > 0)
-        {
-            <tr>
-                Currently Escorting @ViewData[item.Id]
-            </tr>
-        }
-
     }
 </table>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }, new { @class = "btn btn-default" }) 
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }, new { @class = "btn btn-warning" }) 
     @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-default" })
 </p>
 
