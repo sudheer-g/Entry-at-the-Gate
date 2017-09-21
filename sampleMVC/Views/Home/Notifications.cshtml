@@ -11,7 +11,7 @@
         @*For Debuggin Purpose.TODO*@
         @if (Request.IsAuthenticated && User.IsInRole("Employee"))
         {
-            @Html.ActionLink("Refuse Job", "FreeEscort", "RolesAdmin", new { escortID = ViewBag.userId }, new { @class = "EscortLink btn btn-default" })
+            @Html.ActionLink("Transfer Job", "FreeEscort", "RolesAdmin", new { escortID = ViewBag.userId }, new { @class = "EscortLink btn btn-danger" })
         }
     </dl>
 </div>
@@ -25,7 +25,7 @@
 
             url: $(this).attr("href"), // comma here instead of semicolon
             success: function () {
-                alert("Escort Request Rejected!");  // or any other indication if you want to show
+                alert("Escort Request Transferred!");  // or any other indication if you want to show
             }
 
         });
