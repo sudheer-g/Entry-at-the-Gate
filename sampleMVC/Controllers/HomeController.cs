@@ -82,9 +82,17 @@ namespace IdentitySample.Controllers
                         notificationsString += "<p>" + reader.ReadLine() + "</p>";
                 }
             }
-            else
+            else if(User.IsInRole("Employee"))
             {
                 using (StreamReader reader = new StreamReader(Server.MapPath("~/UserNotifications/") + userId + ".txt"))
+                {
+                    while (reader.Peek() >= 0)
+                        notificationsString += "<p>" + reader.ReadLine() + "</p>";
+                }
+            }
+            else
+            {
+                using (StreamReader reader = new StreamReader(Server.MapPath("~/UserNotifications/") + "Security.txt"))
                 {
                     while (reader.Peek() >= 0)
                         notificationsString += "<p>" + reader.ReadLine() + "</p>";

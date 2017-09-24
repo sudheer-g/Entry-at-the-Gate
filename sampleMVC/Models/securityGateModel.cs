@@ -19,6 +19,8 @@ namespace sampleMVC.Models
         [Required(AllowEmptyStrings = false, ErrorMessage = "Required Field")]
         [RegularExpression(@"^[a-zA-Z\s]+$", ErrorMessage = "Use letters only please")]
         public string Reason { get; set; }
+        //[DataType(DataType.Date), DisplayFormat(DataFormatString = @"{0:dd\/MM\/yyyy HH:mm}",
+        //    ApplyFormatInEditMode = true)]
         [DataType(DataType.DateTime)]
         public DateTime EntryTime { get; set; }
         public string EscortID { get; set; }
@@ -32,12 +34,15 @@ namespace sampleMVC.Models
         [Key]
         [DataType(DataType.EmailAddress)]
         public string email { get; set; }
-        [DataType(DataType.PhoneNumber)]
+        [Phone]
+        [RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$", ErrorMessage = "Not a valid Phone number")]
         public string ContactNumber { get; set; }
         [Required(AllowEmptyStrings = false, ErrorMessage = "Required Field")]
         public string IdProofType { get; set; }
         [Required(AllowEmptyStrings = false, ErrorMessage = "Required Field")]
         public string IdProofNumber { get; set; }
+        //[DataType(DataType.Date), DisplayFormat(DataFormatString = @"{0:dd\/MM\/yyyy HH:mm}",
+        //    ApplyFormatInEditMode = true)]
         [DataType(DataType.DateTime)]
         public DateTime ReportTime { get; set; }
         public string Photo { get; set; }

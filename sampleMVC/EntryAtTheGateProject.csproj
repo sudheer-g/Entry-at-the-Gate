@@ -267,6 +267,7 @@
     <Content Include="Scripts\moment.min.js" />
     <Content Include="Scripts\popper.min.js" />
     <Content Include="UserNotifications\Admin.txt" />
+    <Content Include="UserNotifications\Security.txt" />
     <Content Include="Views\Guests\Create.cshtml" />
     <Content Include="Views\Guests\Delete.cshtml" />
     <Content Include="Views\Guests\Details.cshtml" />

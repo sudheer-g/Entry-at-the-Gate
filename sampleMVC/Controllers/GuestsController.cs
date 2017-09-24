@@ -67,18 +67,26 @@ namespace sampleMVC.Controllers
         // GET: Guests/Create
         public ActionResult Create()
         {
+            //return View(new Guest
+            //{
+            //    EntryTime = DateTime.Now
+            //} );
             return View();
         }
 
         // POST: Guests/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Name,email,Reason,EntryTime")] Guest guest)
+        public async Task<ActionResult> Create([Bind(Include = "ID,Name,email,Reason,EntryTime")] Guest guest)
         {
             if (ModelState.IsValid)
             {
                 db.GuestData.Add(guest);
                 db.SaveChanges();
+                using (StreamWriter writer = new StreamWriter(Server.MapPath("~/UserNotifications/") +  "Security.txt", true))
+                {
+                    await writer.WriteLineAsync("New Guest Request Created.Guest Name: " + guest.Name.ToString());
+                }
                 return RedirectToAction("Index");
             }
 
@@ -150,6 +158,11 @@ namespace sampleMVC.Controllers
             HttpContext.Application["guestEscortMap"] = guestEscortMap;
             HttpContext.Application["escortQueue"] = escortQueue;
             HttpContext.Application.UnLock();
+
+            using (StreamWriter writer = new StreamWriter(Server.MapPath("~/UserNotifications/") +  "Admin.txt", true))
+            {
+                 writer.WriteLine("Guest Relieved! Guest Name: " + guest.Name.ToString() + "Escort ID:" + escortID );
+            }
 
             return RedirectToAction("Index");
         }

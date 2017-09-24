@@ -8,11 +8,11 @@
     @Scripts.Render("~/bundles/modernizr")
 
     <style>
-        
+        body {background-color:#f9fbe7 ;}
     </style>
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar navbar-inverse bg-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -30,8 +30,6 @@
                         <li>@Html.ActionLink("Notifications","Notifications","Home")</li>
                     }
                     <li>@Html.ActionLink("About Us", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact Us", "Contact", "Home")</li>
-
                     @if (Request.IsAuthenticated && User.IsInRole("Admin")) {
                         <li>@Html.ActionLink("Roles", "Index", "RolesAdmin")</li>
                         <li>@Html.ActionLink("Users", "Index", "UsersAdmin")</li>
